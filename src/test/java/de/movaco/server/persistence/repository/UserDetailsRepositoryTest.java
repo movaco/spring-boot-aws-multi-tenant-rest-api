@@ -14,8 +14,7 @@ class UserDetailsRepositoryTest extends TestTenantContextBase {
   private static final UserDetailsEntity TEST_USER =
       new UserDetailsEntity(TEST_USER_NAME, "Helge", "Schneider", "test@user.de");
 
-  @Autowired
-  private UserDetailsRepository repository;
+  @Autowired private UserDetailsRepository repository;
 
   @Test
   public void saveTestUserWorks() {
@@ -32,12 +31,7 @@ class UserDetailsRepositoryTest extends TestTenantContextBase {
       UserDetailsEntity expected, UserDetailsEntity actual) {
     assertThat(actual)
         .isEqualToIgnoringGivenFields(
-            expected,
-            "settings",
-            "id",
-            "version",
-            "timePersisted",
-            "timeModified");
+            expected, "settings", "id", "version", "timePersisted", "timeModified");
   }
 
   @Test

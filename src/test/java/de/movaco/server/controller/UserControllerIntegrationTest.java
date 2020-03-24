@@ -27,14 +27,11 @@ public class UserControllerIntegrationTest extends ControllerTestBase {
   private static final UserDetailsEntity TEST_USER =
       new UserDetailsEntity(TEST_USER_NAME, "Helge", "Schneider", "testuser@company.com");
 
-  @Autowired
-  private UserDetailsRepository userDetailsRepository;
+  @Autowired private UserDetailsRepository userDetailsRepository;
 
-  @Autowired
-  private UserService userService;
+  @Autowired private UserService userService;
 
-  @MockBean
-  AuthenticatedUserService authenticatedUserService;
+  @MockBean AuthenticatedUserService authenticatedUserService;
 
   @Test
   @TestUser
