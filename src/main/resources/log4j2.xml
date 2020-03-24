@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="[%level] %d{dd.MM.yyy HH:mm}  %logger{36} - %msg%n"/>
+        </Console>
+        <File name="ServerLogFile" fileName="server.log">
+            <PatternLayout pattern="[%level] %d{dd.MM.yyy HH:mm} %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.graphhopper.reader.osm" level="warn"/>
+        <Logger name="de.movaco" level="debug"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ServerLogFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

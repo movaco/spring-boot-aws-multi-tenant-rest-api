@@ -1,0 +1,22 @@
+server:
+  port: 5000
+  address: localhost
+  use-forward-headers: true
+spring:
+  profiles:
+    active: production
+  resources:
+    add-mappings: false
+  datasource:
+    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME}
+    url: ${DB_URL}
+  jpa:
+    hibernate:
+      ddl-auto: create
+db:
+  tenantSchemaName: ${TENANTS_SCHEMA}
+cognito:
+  clientId: ${COGNITO_CLIENT_ID}
+  region: ${COGNITO_REGION}
+  poolId: ${COGNITO_USER_POOL_ID}
