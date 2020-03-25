@@ -8,14 +8,14 @@ spring:
   resources:
     add-mappings: false
   datasource:
-    password: ${DB_PASSWORD}
-    username: ${DB_USERNAME}
-    url: ${DB_URL}
+    password:
+    username: sa
+    url: jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
   jpa:
     hibernate:
       ddl-auto: create
 db:
-  tenantSchemaName: ${TENANTS_SCHEMA}
+  tenantSchemaName: TENANTS
 cognito:
   clientId: ${COGNITO_CLIENT_ID}
   region: ${COGNITO_REGION}
