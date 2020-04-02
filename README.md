@@ -75,11 +75,27 @@ which will start the application on **port 5000**
 The swagger-ui will be available at [http://localhost:5000/swagger-ui.html]()
 
 
-## Create an administrator
+### User Roles
 
 As listed in `de.movaco.server.security.Roles` there are two special user types:
 
-  * ADMIN: administrator of a specific tenant. This user 
+  * SUPER_ADMIN: super-administrator who is allowed to create a new tenant. Super administrators need to be in the **superAdmins** within the cognito user pool.
+  * ADMIN: administrator of a specific tenant. This user is allowed to create or delete users. Administrators need to be in the **admins**  group within the cognito user pool.
+  * USER: all authenticated users
+ 
+### Create a tenant
+
+To create a tenant the following GET endpoint needs to be called:
+
+http://localhost:5000/tenants/create with 
+
+  * *tenantName*: display name of the tenant
+  * *schemaName*: name of the database schema that should be used for the tenant
+  
+This can be easily done using the swagger-ui:
+http://localhost:5000/swagger-ui.html
+
+Note: a valid access token for a cognito-user needs within the *superAdmins* group needs to be provided as bearer token.
 
 
 
