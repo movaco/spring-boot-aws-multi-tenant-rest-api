@@ -72,15 +72,16 @@ and execute it
 java -jar target/server.jar
 ```
 which will start the application on **port 5000**
-The swagger-ui will be available at [http://localhost:5000/swagger-ui.html]()
+
+The swagger-ui of the REST Api will be available at [http://localhost:5000/swagger-ui.html]()
 
 
 ### User Roles
 
 As listed in `de.movaco.server.security.Roles` there are two special user types:
 
-  * SUPER_ADMIN: super-administrator who is allowed to create a new tenant. Super administrators need to be in the **superAdmins** within the cognito user pool.
-  * ADMIN: administrator of a specific tenant. This user is allowed to create or delete users. Administrators need to be in the **admins**  group within the cognito user pool.
+  * SUPER_ADMIN: super-administrator who is allowed to create a new tenant. Super administrators need to be member of the **superAdmins** group within the cognito user pool.
+  * ADMIN: administrator of a specific tenant. This user is allowed to create or delete users. Administrators need to be member of the **admins** group within the cognito user pool.
   * USER: all authenticated users
  
 ### Create a tenant
@@ -97,6 +98,24 @@ http://localhost:5000/swagger-ui.html
 
 Note: a valid access token for a cognito-user needs within the *superAdmins* group needs to be provided as bearer token.
 
+### Create a user
+
+To create a user within the platform it first needs to be created in the cognito user pool. When creating the user the custom attribute **custom:tenan** needs to be set to the tenant schema name of the tenant the user should have access to.
+
+To register the user within the platform the following POST endpoint needs to be called:
+
+http://localhost:5000/users/create
+
+with the user details provided within the body such as:
+
+```
+{
+    userName: "userA";
+    firstName: "Peter";
+    lastName: "Parker";
+    email: "peter@parker.com"
+}
+```
 
 
 ## Development
