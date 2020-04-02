@@ -3,10 +3,7 @@ package de.movaco.server.security.cognito;
 import static de.movaco.server.security.Roles.withRolePrefix;
 
 import de.movaco.server.security.Roles;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
