@@ -1,5 +1,7 @@
 ![](https://github.com/movaco/spring-boot-aws-multi-tenant-rest-api/workflows/Java%20CI%20with%20Maven/badge.svg)
 
+<img src="https://uploads-ssl.webflow.com/5cea78208cdd0a4c682d34fe/5cea8e5c5d0f4757e89d7426_WortBildMarke_Extended_Movaco_RGB-p-500.png" alt="drawing" width="100"/>
+
 # Spring Boot multi-tenant example application
 
 This repository contains the base implementation of our multi-tenant backend based on
@@ -24,7 +26,7 @@ The application is based on the following multi-tenancy concept:
    1. the [tenant interceptor](src/main/java/de/movaco/server/multi_tenancy/TenantInterceptorAdapter.java) will validate the jwt bearer token,
    2. [request the tenant-identifier](src/main/java/de/movaco/server/security/cognito/CognitoTenantResolver.java) from cognito,
    3. [add user roles](src/main/java/de/movaco/server/security/cognito/CognitoAuthenticationManager.java) to the authentication object and
-   3. set the [tenant context](src/main/java/de/movaco/server/multi_tenancy/TenantContext.java) of the request so that all database connections will use the tenant schema during the request. 
+   3. set the [tenant context](src/main/java/de/movaco/server/multi_tenancy/TenantContext.java) of the request so that all database connections will use the tenant schema during the request. After each request the context will be cleared. 
 
 This way all tenant-specific data is completely isolated within it's own schema and for each http-request it is assured that only the assigned tenant is used.
 
@@ -67,7 +69,15 @@ To run the application with an in-memory hsqldb you need to build the jar-file
 ```
 mvn package -DskipTests
 ```
-and execute it
+
+By default, the cognito user pool is assumed to be configured by environment variables:
+
+```
+export COGNITO_CLIENT_ID=test-client-id
+export COGNITO_REGION=test-region
+export COGNITO_USER_POOL_ID=test-pool-id
+```
+The server can then be started using
 ```
 java -jar target/server.jar
 ```
@@ -117,6 +127,7 @@ with the user details provided within the body such as:
 }
 ```
 
+This will create a new `UserDetailsEntity` stored in the `user_details` table within the tenant schema.
 
 ## Development
 
