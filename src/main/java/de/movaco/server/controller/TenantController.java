@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping(value = TENANTS)
@@ -24,7 +23,6 @@ public class TenantController {
     this.tenantService = tenantService;
   }
 
-  @ApiIgnore
   @GetMapping(value = RestEndpoints.TENANTS_CREATE)
   public UUID createTenant(
       @RequestParam(value = "tenantName") String tenantName,
@@ -38,7 +36,6 @@ public class TenantController {
     return tenantService.getTenantName();
   }
 
-  @ApiIgnore
   // We do not use @DeleteMapping to be able to enable CSRF protection
   @GetMapping(value = RestEndpoints.TENANTS_DELETE + "/{tenantId}")
   public void deleteTenant(@PathVariable(value = "tenantId") UUID tenantId) {
